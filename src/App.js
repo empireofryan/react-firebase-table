@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+// import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
+import List from 'react-virtualized/dist/commonjs/List';
 import database from './database';
 
 class App extends Component {
     constructor(props) {
     super(props);
     this.state = {
-      inquiries: []
+      inquiries: [{test: 'test'}]
     };
   //this is connect to the firebase
    this.inquiryRef = database.ref();
@@ -28,18 +29,37 @@ class App extends Component {
           seller_email: inquirydata[k].seller_email,
           number_dialed: inquirydata[k].number_dialed,
           inquiry_phone: inquirydata[k].inquiry_phone,
-          additional_info: inquirydata[k].additional_info
+          additional_info: inquirydata[k].additional_info,
         });
       }
       this.setState({inquiries: newInquiry});
+      console.log(newInquiry);
     }
     errData = (err) => {
-  console.log(err);
+      console.log(err);
+    }
+
+//  handleClick = (rowKey) => {
+//    alert(this.refs.table.getPageByRowKey(rowKey));
+//  }
+
+ rowRenderer ({
+  key,         // Unique key within array of rows
+  index,       // Index of row within collection
+  isScrolling, // The List is currently being scrolled
+  isVisible,   // This row is visible within the List (eg it is not an overscanned row)
+  style        // Style object to be applied to row (to position it)
+}) {
+  return (
+    <div
+      key={key}
+      style={style}
+    >
+      {this.state.inquiries[index]}
+    </div>
+  )
 }
 
- handleClick = (rowKey) => {
-   alert(this.refs.table.getPageByRowKey(rowKey));
- }
  render(){
 
    return (
@@ -47,7 +67,7 @@ class App extends Component {
        <div>
       <h1>Phone Call Inquiries</h1>
       </div>
-     <BootstrapTable
+     {/* <BootstrapTable
          ref='table'
          data={ this.state.inquiries }
          pagination={ false }
@@ -59,12 +79,17 @@ class App extends Component {
          <TableHeaderColumn dataField='number_dialed'>Number Dialed</TableHeaderColumn>
          <TableHeaderColumn dataField='inquiry_phone'>Inquiry Phone</TableHeaderColumn>
          <TableHeaderColumn dataField='additional_info'>Additional Info</TableHeaderColumn>
-     </BootstrapTable>
-
+     </BootstrapTable> */}
+       <List
+    width={300}
+    height={300}
+    rowCount={this.state.inquiries.length}
+    rowHeight={20}
+    rowRenderer={this.rowRenderer}
+  />
     </div>
    );
   }
  }
-
 
 export default App;
