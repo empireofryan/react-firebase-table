@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-// import { BootstrapTable, TableHeaderColumn } from 'react-bootstrap-table';
 import List from 'react-virtualized/dist/commonjs/List';
-// import { Column, Table } from 'react-virtualized';
 import database from './database';
 
 class App extends Component {
@@ -54,40 +52,9 @@ class App extends Component {
     marginLeft: '20px'
   }
 
-  // const email = this.state.inquiries[index].seller_email
   const emailCheck = typeof this.state.inquiries[index].seller_email !== "undefined"
    
     return (
-      // <div>
-      // {console.log(emailCheck)}
-      // {emailCheck ? (
-    
-      //   <div
-      //     key={this.state.inquiries[index].id}
-      //     style={style}
-      //   >
- 
-      //     <div>
-      //       <span>
-      //         {this.state.inquiries[index].seller_email}
-      //       </span>
-      //       <span style={spanStyle}>
-      //         {this.state.inquiries[index].number_dialed}
-      //       </span>
-      //       <span style={spanStyle}>
-      //         {this.state.inquiries[index].inquiry_phone}
-      //       </span>
-      //       <span style={spanStyle}>
-      //         {this.state.inquiries[index].received_call}
-      //       </span>
-      //       <span style={spanStyle}>
-      //         {this.state.inquiries[index].additional_comments}
-      //       </span>
-      //     </div>
-     
-      //   </div>
-      //      ) : ('')}
-      // </div>
       <div key={this.state.inquiries[index].id} className="row">
         <div className="content">
           <div>{this.state.inquiries[index].seller_email}</div>
@@ -109,49 +76,14 @@ class App extends Component {
       <div>
         <h1>Phone Call Inquiries</h1>
       </div>
-     {/* <BootstrapTable
-         ref='table'
-         data={ this.state.inquiries }
-         pagination={ false }
-         search={ true }
-         >
-       <TableHeaderColumn dataField='ISBN' isKey={true} dataSort={true}></TableHeaderColumn>
-         <TableHeaderColumn dataField='received_call' dataSort={true}>Received Call</TableHeaderColumn>
-         <TableHeaderColumn dataField='seller_email'>Seller Email</TableHeaderColumn>
-         <TableHeaderColumn dataField='number_dialed'>Number Dialed</TableHeaderColumn>
-         <TableHeaderColumn dataField='inquiry_phone'>Inquiry Phone</TableHeaderColumn>
-         <TableHeaderColumn dataField='additional_info'>Additional Info</TableHeaderColumn>
-     </BootstrapTable> */}
-
-    <List
-      width={1200}
-      marginLeft={'30px'}
-      height={100000}
-      rowCount={this.state.inquiries.length}
-      rowHeight={80}
-      rowRenderer={this.rowRenderer}
-      />
-
-
-      {/* <Table
-        width={600}
-        height={300}
-        headerHeight={20}
-        rowHeight={30}
+      <List
+        width={1200}
+        marginLeft={'30px'}
+        height={100000}
         rowCount={this.state.inquiries.length}
-        rowGetter={({ index }) => this.state.inquiries[index]}
-      >
-        <Column
-          label='Email'
-          dataKey='seller_email'
-          width={100}
+        rowHeight={80}
+        rowRenderer={this.rowRenderer}
         />
-        <Column
-          width={200}
-          label='Number Dialed'
-          dataKey='number_dialed'
-        />
-      </Table> */}
     </div>
    );
   }
