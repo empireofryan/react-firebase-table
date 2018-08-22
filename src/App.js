@@ -51,19 +51,22 @@ class App extends Component {
   let spanStyle = {
     marginLeft: '20px'
   }
+  let divStyle = {
+    padding: '10px'
+  }
 
   const emailCheck = typeof this.state.inquiries[index].seller_email !== "undefined"
    
     return (
-      <div key={this.state.inquiries[index].id} className="row">
+      <div key={this.state.inquiries[index].id} className="row divStyle">
         <div className="content">
           <div>{this.state.inquiries[index].seller_email}</div>
         </div>
         <div className="content">
-          <div>{this.state.inquiries[index].number_dialed}</div>
-          <div>{this.state.inquiries[index].inquiry_phone}</div>
-          <div>{this.state.inquiries[index].received_call}</div>
-          <div>{this.state.inquiries[index].additional_comments}</div>
+          <div className="pb-center">{this.state.inquiries[index].number_dialed}</div>
+          <div className="pb-center">{this.state.inquiries[index].inquiry_phone}</div>
+          <div className="pb-center">{this.state.inquiries[index].received_call}</div>
+          <div className="pb-center">{this.state.inquiries[index].additional_comments}</div>
         </div>
         <div className="content"><br/></div>
       </div>
